@@ -1,0 +1,15 @@
+.SessionPlayers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.SessionPlayersContainer {
+  flex-wrap: wrap;
+  /* align-items: center; */
+  width: 98%;
+  display: flex;
+  column-gap: 10px;
+  row-gap: 10px;
+}

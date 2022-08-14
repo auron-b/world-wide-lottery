@@ -1,0 +1,23 @@
+.Stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+
+.StatsContainer {
+  margin: 10px;
+  flex-wrap: wrap;
+  width: 95%;
+  display: flex;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.Nat {
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px;
+  width: 150px;
+}
+

@@ -1,0 +1,15 @@
+.Winners {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.WinnersContainer {
+    flex-wrap: wrap;
+    width: 95%;
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+}
