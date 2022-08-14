@@ -1,4 +1,4 @@
-export const sortAscDes = (sortOrientation, sortedPlayers) => {
+export const sortByOrientation = (sortOrientation, sortedPlayers) => {
   let condition;
   if (sortOrientation === "descending") {
     condition = (a, b) => (a.time > b.time ? -1 : a.time < b.time ? 1 : 0);
@@ -9,11 +9,5 @@ export const sortAscDes = (sortOrientation, sortedPlayers) => {
 };
 
 export const setOrientation = (sortOrientation) => {
-  if (sortOrientation === "descending") {
-    return "ascending";
-    // setSortOrientation("ascending");
-  } else {
-    return "descending";
-    // setSortOrientation("descending");
-  }
+  return sortOrientation === "descending" ? "ascending" : "descending";
 };

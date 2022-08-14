@@ -3,33 +3,30 @@ import { useSelector } from "react-redux";
 import NavBar from "../components/NavBar";
 import PrimaryButton from "../components/PrimaryButton";
 import styles from "./Stats.module.css";
-import { sortAscDes, setOrientation } from "../utils/sortAscDes";
+import { setOrientation } from "../utils/sorting";
 
 const Stats = () => {
   const users = useSelector((state) => state.users.users);
   const [sortOrientation, setSortOrientation] = useState("descending");
 
-  let fromNation = users.reduce((acc, crr) => {
-    acc[crr.nat] = (acc[crr.nat] || 0) + 1;
+  let nations = users.reduce((acc, current) => {
+    acc[current.nat] = (acc[current.nat] || 0) + 1;
     return acc;
   }, {});
 
-  const [sortedNat, setSortedNat] = useState(fromNation);
-
+  const [sortedNat, setSortedNat] = useState(nations);
   useEffect(() => {
+    let condition;
     if (sortOrientation === "descending") {
-      setSortedNat(
-        Object.entries(fromNation)
-          .sort(([, a], [, b]) => b - a)
-          .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
-      );
+      condition = ([, current], [, next]) => next - current;
     } else {
-      setSortedNat(
-        Object.entries(fromNation)
-          .sort(([, a], [, b]) => a - b)
-          .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
-      );
+      condition = ([, current], [, next]) => current - next;
     }
+    setSortedNat(
+      Object.entries(nations)
+        .sort(condition)
+        .reduce((acc, [nat, count]) => ({ ...acc, [nat]: count }), {})
+    );
   }, [sortOrientation]);
 
   const changeSort = () => {
@@ -38,7 +35,9 @@ const Stats = () => {
   return (
     <div className={styles.Stats}>
       <NavBar />
-      <PrimaryButton onClick={changeSort}>Sort</PrimaryButton>
+      <PrimaryButton onClick={changeSort}>
+        Sort {sortOrientation === "descending" ? "Ascending" : "Descending"}
+      </PrimaryButton>
       <div className={styles.StatsContainer}>
         {Object.keys(sortedNat).map((user) => {
           return (

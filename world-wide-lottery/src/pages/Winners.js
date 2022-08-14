@@ -4,14 +4,14 @@ import UserCard from "../components/UserCard";
 import NavBar from "../components/NavBar";
 import PrimaryButton from "../components/PrimaryButton";
 import styles from "./Winners.module.css";
-import { sortAscDes, setOrientation } from "../utils/sortAscDes";
+import { sortByOrientation, setOrientation } from "../utils/sorting";
 const Winners = () => {
   const winners = useSelector((state) => state.users.winners);
   const [sortOrientation, setSortOrientation] = useState("descending");
   const [sortedWinners, setSortedWinners] = useState(winners);
 
   useEffect(() => {
-    setSortedWinners(sortAscDes(sortOrientation, sortedWinners));
+    setSortedWinners(sortByOrientation(sortOrientation, sortedWinners));
   }, [sortOrientation]);
 
   const onChange = () => {

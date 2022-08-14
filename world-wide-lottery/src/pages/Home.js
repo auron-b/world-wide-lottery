@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Home.module.css";
-// import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { usersListActions } from "../store/userSlice.js";
@@ -21,12 +20,10 @@ const Home = () => {
     axios
       .get("https://randomuser.me/api?page={pageIndex}")
       .then((response) => {
-        console.log(response);
         let randomNr = Math.floor(Math.random() * 100);
         let res = response.data.results[0];
         // when the id value is null use email value as id
         let crrid = res.id.value != null ? res.id.value : res.email;
-        // console.log(res, crrid);
         const currentUsr = {
           picture: res.picture.thumbnail,
           fullName: res.name.title + " " + res.name.first + " " + res.name.last,
@@ -43,7 +40,6 @@ const Home = () => {
             "-" +
             res.location.street.name,
           nat: res.nat,
-          //   nat: "CH",
           isWinner: res.registered.age === randomNr,
           // isWinner: true,
           age: res.registered.age,

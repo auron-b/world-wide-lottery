@@ -1,7 +1,7 @@
 import React from "react";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "./PrimaryButton";
 
 export const ExportCSV = ({ csvData, fileName }) => {
   const fileType =
